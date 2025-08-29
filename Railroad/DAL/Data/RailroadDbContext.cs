@@ -104,7 +104,7 @@ namespace Railroad.DAL.Data
                 new RoutePoint
                 {
                     Id = 1,
-                    RouteId = 1,
+                    TrainRouteId = 1,
                     StationId = 1,
                     ArrivalTime = new DateTime(2025, 8, 28, 9, 0, 0),
                     DepartureTime = new DateTime(2025, 8, 28, 9, 15, 0),
@@ -115,7 +115,7 @@ namespace Railroad.DAL.Data
                 new RoutePoint
                 {
                     Id = 2,
-                    RouteId = 1,
+                    TrainRouteId = 1,
                     StationId = 2,
                     ArrivalTime = new DateTime(2025, 8, 28, 12, 0, 0),
                     DepartureTime = new DateTime(2025, 8, 28, 12, 10, 0),

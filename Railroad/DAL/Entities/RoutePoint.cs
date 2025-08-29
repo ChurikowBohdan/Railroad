@@ -4,7 +4,7 @@ namespace Railroad.DAL.Entities
 {
     public class RoutePoint : BaseEntity
     {
-        public int RouteId { get; set; }
+        public int TrainRouteId { get; set; }
         public int StationId { get; set; }
 
         public DateTime? ArrivalTime { get; set; }
@@ -19,7 +19,7 @@ namespace Railroad.DAL.Entities
         [Range(0, 10000)]
         public double DistanceFromPreviousStation { get; set; }
 
-        public TrainRoute Route { get; set; }
+        public TrainRoute TrainRoute { get; set; }
         public Station Station { get; set; }
     }
 }

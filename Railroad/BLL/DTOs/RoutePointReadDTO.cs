@@ -1,6 +1,17 @@
-﻿namespace Railroad.BLL.DTOs
+﻿using Railroad.DAL.Entities;
+using System.ComponentModel.DataAnnotations;
+
+namespace Railroad.BLL.DTOs
 {
     public class RoutePointReadDTO
     {
+        public int Id { get; set; }
+        public int RouteId { get; set; }
+        public int StationId { get; set; }
+        public DateTime? ArrivalTime { get; set; }
+        public DateTime? DepartureTime { get; set; }
+        public int Platform { get; set; }
+        public int Order { get; set; }
+        public double DistanceFromPreviousStation { get; set; }
     }
 }
