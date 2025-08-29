@@ -1,0 +1,6 @@
+@Railroad_HostAddress = http://localhost:5122
+
+GET {{Railroad_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
