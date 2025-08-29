@@ -4,7 +4,7 @@ namespace Railroad.BLL.DTOs
 {
     public class StationReadDTO
     {
-        public int Id { get; set; }
+        public int StationId { get; set; }
         public string Name { get; set; }
         public string StationCityName { get; set; }
         public string StationDistrictName { get; set; }

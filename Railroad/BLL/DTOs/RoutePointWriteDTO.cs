@@ -2,7 +2,7 @@
 {
     public class RoutePointWriteDTO
     {
-        public int RouteId { get; set; }
+        public int TrainRouteId { get; set; }
         public int StationId { get; set; }
         public DateTime? ArrivalTime { get; set; }
         public DateTime? DepartureTime { get; set; }

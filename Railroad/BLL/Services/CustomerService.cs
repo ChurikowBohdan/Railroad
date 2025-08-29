@@ -13,21 +13,21 @@ namespace Railroad.BLL.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task AddAsync(CustomerWriteDTO customerDTO)
+        public async Task AddAsync(CustomerWriteDTO customerWriteDTO)
         {
             var entity = new Customer
             {
-                DiscountValue = customerDTO.DiscountValue,
-                Email = customerDTO.Email,
+                DiscountValue = customerWriteDTO.DiscountValue,
+                Email = customerWriteDTO.Email,
                 RegistrationDate = DateTime.Now,
                 Person = new Person
                 {
-                    Name = customerDTO.Name,
-                    Surname = customerDTO.Surname,
-                    PhoneNumber = customerDTO.PhoneNumber,
-                    Country = customerDTO.Country,
-                    City = customerDTO.City,
-                    BirthDate = customerDTO.BirthDate
+                    Name = customerWriteDTO.Name,
+                    Surname = customerWriteDTO.Surname,
+                    PhoneNumber = customerWriteDTO.PhoneNumber,
+                    Country = customerWriteDTO.Country,
+                    City = customerWriteDTO.City,
+                    BirthDate = customerWriteDTO.BirthDate
                 }
             };
 
@@ -43,7 +43,7 @@ namespace Railroad.BLL.Services
         public async Task<IEnumerable<CustomerReadDTO>> GetAllAsync()
         {
             var customers = await _unitOfWork.CustomerRepository.GetAllWithDetailsAsync();
-            return customers.Select(customer => MapToCustomerReadDTO(customer.Id, customer));
+            return customers.Select(customer => MapToCustomerReadDTO(customer));
         }
 
         public async Task<CustomerReadDTO?> GetByIdAsync(int id)
@@ -53,7 +53,7 @@ namespace Railroad.BLL.Services
                 var entity = await _unitOfWork.CustomerRepository.GetByIdWithDetailsAsync(id);
                 if (entity != null)
                 {
-                    return MapToCustomerReadDTO(id, entity);
+                    return MapToCustomerReadDTO(entity);
                 }
             }
             return null;
@@ -66,20 +66,20 @@ namespace Railroad.BLL.Services
             var filteredCustomers = allCustomers.Where(x => x.Tickets.Any(t => t.TrainRoute.TrainId == trainId));
             if(filteredCustomers is not null)
             {
-                return filteredCustomers.Select(customer => MapToCustomerReadDTO(customer.Id, customer));
+                return filteredCustomers.Select(customer => MapToCustomerReadDTO(customer));
             }
             return null;
         }
 
-        public async Task UpdateAsync(int customerId, CustomerWriteDTO data)
+        public async Task UpdateAsync(int customerId, CustomerWriteDTO customerWriteDTO)
         {
             var customer = await _unitOfWork.CustomerRepository.GetByIdWithDetailsAsync(customerId);
             var entity = new Customer
             {
-                Id = customerId,
+                Id = customer.Id,
                 PersonId = customer.PersonId,
-                DiscountValue = data.DiscountValue,
-                Email = data.Email,
+                DiscountValue = customerWriteDTO.DiscountValue,
+                Email = customerWriteDTO.Email,
                 RegistrationDate = customer.RegistrationDate,
                 Person = customer.Person,
                 Tickets = customer.Tickets,
@@ -89,9 +89,9 @@ namespace Railroad.BLL.Services
             await _unitOfWork.SaveAsync();
         }
 
-        private CustomerReadDTO MapToCustomerReadDTO(int id, Customer customer) => new CustomerReadDTO
+        private CustomerReadDTO MapToCustomerReadDTO(Customer customer) => new CustomerReadDTO
         {
-            CustomerId = id,
+            CustomerId = customer.Id,
             Name = customer.Person.Name,
             Surname = customer.Person.Surname,
             PhoneNumber = customer.Person.PhoneNumber,

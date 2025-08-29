@@ -61,42 +61,47 @@ namespace Railroad.DAL.Data
                 {
                     Id = 1,
                     TrainRouteId = 1,
-                    PricesId = 1,
+                    PriceId = 1,
                     DepartureStationId = 1,
                     DestinationStationId = 2,
                     CustomerId = 1,
                     CarriageWeight = 10,
                     Seat = 12,
-                    FinalPrice = 300,
+                    CarriagePrice = 25m,
+                    RoadPrice = 270m,
+                    FinalPrice = 295m,
                     PurchaseDate = new DateTime(2024, 9, 12, 5, 2, 3)
                 },
                 new Ticket
                 {
                     Id = 2,
                     TrainRouteId = 2,
-                    PricesId = 1,
+                    PriceId = 1,
                     DepartureStationId = 2,
                     DestinationStationId = 1,
                     CustomerId = 2,
                     CarriageWeight = 15,
                     Seat = 8,
-                    FinalPrice = 450,
+                    CarriagePrice = 37.5m,
+                    RoadPrice = 270m,
+                    FinalPrice = 307.5m,
                     PurchaseDate = new DateTime(2025, 8, 28, 9, 1, 1)
                 },
                 new Ticket
                 {
                     Id = 3,
                     TrainRouteId = 1,
-                    PricesId = 1,
+                    PriceId = 1,
                     DepartureStationId = 2,
                     DestinationStationId = 1,
                     CustomerId = 2,
                     CarriageWeight = 12,
                     Seat = 9,
-                    FinalPrice = 450,
+                    CarriagePrice = 30m,
+                    RoadPrice = 270m,
+                    FinalPrice = 300m,
                     PurchaseDate = new DateTime(2024, 7, 28, 8, 11, 12)
                 }
-
             );
 
             // -------- RoutePoints --------

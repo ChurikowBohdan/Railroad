@@ -5,7 +5,7 @@ namespace Railroad.DAL.Entities
     public class Ticket : BaseEntity
     {
         public int TrainRouteId { get; set; }
-        public int PricesId { get; set; }
+        public int PriceId { get; set; }
         public int CustomerId { get; set; }
 
         public int DepartureStationId { get; set; }
@@ -17,6 +17,11 @@ namespace Railroad.DAL.Entities
         [Range(0, 100)]
         public int Seat { get; set; }
 
+        [Range(0, 1000)]
+        public decimal CarriagePrice { get; set; }
+
+        [Range(0, 1000)]
+        public decimal RoadPrice { get; set; }
 
         [Range(0, 1000)]
         public decimal FinalPrice { get; set; }

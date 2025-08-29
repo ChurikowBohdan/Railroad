@@ -5,8 +5,8 @@ namespace Railroad.BLL.DTOs
 {
     public class RoutePointReadDTO
     {
-        public int Id { get; set; }
-        public int RouteId { get; set; }
+        public int RoutePointId { get; set; }
+        public int TrainRouteId { get; set; }
         public int StationId { get; set; }
         public DateTime? ArrivalTime { get; set; }
         public DateTime? DepartureTime { get; set; }
