@@ -8,8 +8,6 @@ namespace Railroad.DAL.Entities
 
         [MaxLength(400)]
         public string Name { get; set; }
-
-       
         public Train Train { get; set; }
         public ICollection<RoutePoint> RoutePoints { get; set; }
     }

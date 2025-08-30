@@ -22,9 +22,22 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IPriceRepository, PriceRepository>();
+builder.Services.AddScoped<IRoutePointRepository, RoutePointRepository>();
+builder.Services.AddScoped<IStationRepository, StationRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+builder.Services.AddScoped<ITrainRepository, TrainRepository>();
+builder.Services.AddScoped<ITrainRouteRepository, TrainRouteRepository>();
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IPriceService, PriceService>();
+builder.Services.AddScoped<IRouteFilterService, RouteFilterService>();
+builder.Services.AddScoped<IRoutePointService, RoutePointService>();
+builder.Services.AddScoped<IStationService, StationService>();
+builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<ITrainRouteService, TrainRouteService>();
+builder.Services.AddScoped<ITrainService, TrainService>();
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

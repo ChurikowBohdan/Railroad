@@ -1,10 +1,11 @@
 ﻿using Railroad.BLL.DTOs;
+using Railroad.BLL.ServiceIntefaces;
 using Railroad.DAL.Entities;
 using Railroad.DAL.Interfaces;
 
 namespace Railroad.BLL.Services
 {
-    public class TicketService
+    public class TicketService : ITicketService
     {
         private readonly IUnitOfWork _unitOfWork;
         public TicketService(IUnitOfWork unitOfWork)

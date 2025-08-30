@@ -1,10 +1,11 @@
 ﻿using Railroad.BLL.DTOs;
+using Railroad.BLL.ServiceIntefaces;
 using Railroad.DAL.Entities;
 using Railroad.DAL.Interfaces;
 
 namespace Railroad.BLL.Services
 {
-    public class RoutePointService
+    public class RoutePointService : IRoutePointService
     {
         private readonly IUnitOfWork _unitOfWork;
         public RoutePointService(IUnitOfWork unitOfWork)

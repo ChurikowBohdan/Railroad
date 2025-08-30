@@ -1,11 +1,12 @@
 ﻿using Railroad.BLL.DTOs;
+using Railroad.BLL.ServiceIntefaces;
 using Railroad.DAL.Entities;
 using Railroad.DAL.Interfaces;
 using System.Threading.Tasks;
 
 namespace Railroad.BLL.Services
 {
-    public class TrainRouteService
+    public class TrainRouteService : ITrainRouteService
     {
         private readonly IUnitOfWork _unitOfWork;
         public TrainRouteService(IUnitOfWork unitOfWork)

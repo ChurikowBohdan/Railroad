@@ -1,10 +1,11 @@
 ﻿using Railroad.BLL.DTOs;
+using Railroad.BLL.ServiceIntefaces;
 using Railroad.DAL.Entities;
 using Railroad.DAL.Interfaces;
 
 namespace Railroad.BLL.Services
 {
-    public class StationService
+    public class StationService : IStationService
     {
 
         private readonly IUnitOfWork _unitOfWork;

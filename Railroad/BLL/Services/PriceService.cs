@@ -1,10 +1,11 @@
 ﻿using Railroad.BLL.DTOs;
+using Railroad.BLL.ServiceIntefaces;
 using Railroad.DAL.Entities;
 using Railroad.DAL.Interfaces;
 
 namespace Railroad.BLL.Services
 {
-    public class PriceService
+    public class PriceService : IPriceService
     {
         private readonly IUnitOfWork _unitOfWork;
         public PriceService(IUnitOfWork unitOfWork)

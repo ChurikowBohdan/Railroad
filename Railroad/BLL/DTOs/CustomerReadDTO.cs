@@ -8,11 +8,11 @@ namespace Railroad.BLL.DTOs
         public int CustomerId { get; init; }
         public string Name { get; init; }
         public string Surname { get; init; }
-        public string PhoneNumber { get; set; }
-        public string Country { get; set; }
-        public string City { get; set; }
+        public string PhoneNumber { get; init; }
+        public string Country { get; init; }
+        public string City { get; init; }
 
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; init; }
         public int DiscountValue { get; init; }
         public string Email { get; init; }
         public DateTime RegistrationDate { get; init; }
