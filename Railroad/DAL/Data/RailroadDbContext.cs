@@ -46,8 +46,8 @@ namespace Railroad.DAL.Data
 
             // -------- Stations --------
             modelBuilder.Entity<Station>().HasData(
-                new Station { Id = 1, Name = "Central Station", StationCityName = "Kyiv", StationDistrictName = "Podil", NuberOfPlatforms = 5 },
-                new Station { Id = 2, Name = "South Station", StationCityName = "Lviv", StationDistrictName = "Halych", NuberOfPlatforms = 3 }
+                new Station { Id = 1, Name = "Central Station", CityName = "Kyiv", DistrictName = "Podil", NuberOfPlatforms = 5 },
+                new Station { Id = 2, Name = "South Station", CityName = "Lviv", DistrictName = "Halych", NuberOfPlatforms = 3 }
             );
 
             // -------- Price --------

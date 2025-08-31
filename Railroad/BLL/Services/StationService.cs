@@ -18,8 +18,8 @@ namespace Railroad.BLL.Services
             var entity = new Station
             {
                 Name = stationDTO.Name,
-                StationCityName = stationDTO.StationCityName,
-                StationDistrictName = stationDTO.StationDistrictName,
+                CityName = stationDTO.StationCityName,
+                DistrictName = stationDTO.StationDistrictName,
                 NuberOfPlatforms = stationDTO.NuberOfPlatforms
             };
 
@@ -58,8 +58,8 @@ namespace Railroad.BLL.Services
             {
                 Id = station.Id,
                 Name = stationWriteDTO.Name,
-                StationCityName = stationWriteDTO.StationCityName,
-                StationDistrictName = stationWriteDTO.StationDistrictName,
+                CityName = stationWriteDTO.StationCityName,
+                DistrictName = stationWriteDTO.StationDistrictName,
                 NuberOfPlatforms = stationWriteDTO.NuberOfPlatforms
             };
 
@@ -71,8 +71,8 @@ namespace Railroad.BLL.Services
         {
             StationId = station.Id,
             Name = station.Name,
-            StationCityName = station.StationCityName,
-            StationDistrictName = station.StationDistrictName,
+            StationCityName = station.CityName,
+            StationDistrictName = station.DistrictName,
             NuberOfPlatforms = station.NuberOfPlatforms
         };
     }
