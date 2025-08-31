@@ -37,7 +37,7 @@ namespace Railroad.BLL.Services
                     && departure.Order < arrival.Order;
             });
 
-            if (filterDTO.DepartureDate is null & filterDTO.ArrivalDate is null)
+            if (filterDTO.DepartureDate is null && filterDTO.ArrivalDate is null)
             {
                 return baseFilter.Select(routes => MapToDTO(routes, departureCityName, arrivalCityName)).ToList();
             }
