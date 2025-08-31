@@ -20,7 +20,7 @@ namespace Railroad.PL.Controllers
         [HttpGet("departureCity/{dcName}/arrivalCity/{acName}")]
         public async Task<ActionResult<IEnumerable<FilteredRouteReadDTO>>> GetFilteredRoute(string dcName, string acName, [FromQuery] RouteFilterDTO filterDTO)
         {
-            var routes = await _routeFilterService.FilterSearch(dcName, dcName, filterDTO);
+            var routes = await _routeFilterService.FilterSearch(dcName, acName, filterDTO);
             if (routes == null)
             {
                 return NotFound();
