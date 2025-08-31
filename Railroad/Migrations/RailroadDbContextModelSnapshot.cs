@@ -65,6 +65,38 @@ namespace Railroad.Migrations
                             Email = "olena@mail.com",
                             PersonId = 2,
                             RegistrationDate = new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DiscountValue = 15,
+                            Email = "serhiy@mail.com",
+                            PersonId = 3,
+                            RegistrationDate = new DateTime(2021, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DiscountValue = 7,
+                            Email = "kateryna@mail.com",
+                            PersonId = 4,
+                            RegistrationDate = new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DiscountValue = 12,
+                            Email = "mykola@mail.com",
+                            PersonId = 5,
+                            RegistrationDate = new DateTime(2023, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DiscountValue = 3,
+                            Email = "oksana@mail.com",
+                            PersonId = 6,
+                            RegistrationDate = new DateTime(2023, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -127,6 +159,46 @@ namespace Railroad.Migrations
                             Name = "Olena",
                             PhoneNumber = "380671112233",
                             Surname = "Shevchenko"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BirthDate = new DateTime(1988, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            City = "Odesa",
+                            Country = "Ukraine",
+                            Name = "Serhiy",
+                            PhoneNumber = "380501234567",
+                            Surname = "Koval"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BirthDate = new DateTime(1992, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            City = "Dnipro",
+                            Country = "Ukraine",
+                            Name = "Kateryna",
+                            PhoneNumber = "380631112233",
+                            Surname = "Bondarenko"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BirthDate = new DateTime(1985, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            City = "Kharkiv",
+                            Country = "Ukraine",
+                            Name = "Mykola",
+                            PhoneNumber = "380671223344",
+                            Surname = "Shevtsov"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BirthDate = new DateTime(1998, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            City = "Vinnytsia",
+                            Country = "Ukraine",
+                            Name = "Oksana",
+                            PhoneNumber = "380931556677",
+                            Surname = "Moroz"
                         });
                 });
 
@@ -156,6 +228,18 @@ namespace Railroad.Migrations
                             Id = 1,
                             PriceForKGOfCarriageWeight = 2.5m,
                             PriceForKilometer = 0.5m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            PriceForKGOfCarriageWeight = 3m,
+                            PriceForKilometer = 0.55m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            PriceForKGOfCarriageWeight = 2.2m,
+                            PriceForKilometer = 0.45m
                         });
                 });
 
@@ -211,13 +295,211 @@ namespace Railroad.Migrations
                         new
                         {
                             Id = 2,
+                            ArrivalTime = new DateTime(2025, 8, 28, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 28, 10, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 130.0,
+                            Order = 2,
+                            Platform = 1,
+                            StationId = 8,
+                            TrainRouteId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ArrivalTime = new DateTime(2025, 8, 28, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 28, 11, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 180.0,
+                            Order = 3,
+                            Platform = 2,
+                            StationId = 7,
+                            TrainRouteId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
                             ArrivalTime = new DateTime(2025, 8, 28, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             DepartureTime = new DateTime(2025, 8, 28, 12, 10, 0, 0, DateTimeKind.Unspecified),
-                            DistanceFromPreviousStation = 540.0,
-                            Order = 2,
+                            DistanceFromPreviousStation = 220.0,
+                            Order = 4,
                             Platform = 2,
                             StationId = 2,
                             TrainRouteId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ArrivalTime = new DateTime(2025, 8, 28, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 28, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 0.0,
+                            Order = 1,
+                            Platform = 1,
+                            StationId = 2,
+                            TrainRouteId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ArrivalTime = new DateTime(2025, 8, 28, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 28, 14, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 250.0,
+                            Order = 2,
+                            Platform = 2,
+                            StationId = 6,
+                            TrainRouteId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ArrivalTime = new DateTime(2025, 8, 28, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 28, 15, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 180.0,
+                            Order = 3,
+                            Platform = 2,
+                            StationId = 8,
+                            TrainRouteId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ArrivalTime = new DateTime(2025, 8, 28, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 28, 16, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 200.0,
+                            Order = 4,
+                            Platform = 3,
+                            StationId = 3,
+                            TrainRouteId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ArrivalTime = new DateTime(2025, 8, 29, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 29, 8, 15, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 0.0,
+                            Order = 1,
+                            Platform = 1,
+                            StationId = 3,
+                            TrainRouteId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ArrivalTime = new DateTime(2025, 8, 29, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 29, 10, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 400.0,
+                            Order = 2,
+                            Platform = 1,
+                            StationId = 4,
+                            TrainRouteId = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ArrivalTime = new DateTime(2025, 8, 29, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 29, 12, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 320.0,
+                            Order = 3,
+                            Platform = 2,
+                            StationId = 9,
+                            TrainRouteId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ArrivalTime = new DateTime(2025, 8, 29, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 29, 14, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 600.0,
+                            Order = 4,
+                            Platform = 3,
+                            StationId = 5,
+                            TrainRouteId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ArrivalTime = new DateTime(2025, 8, 30, 7, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 30, 7, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 0.0,
+                            Order = 1,
+                            Platform = 1,
+                            StationId = 4,
+                            TrainRouteId = 4
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ArrivalTime = new DateTime(2025, 8, 30, 9, 30, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 30, 9, 40, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 300.0,
+                            Order = 2,
+                            Platform = 2,
+                            StationId = 9,
+                            TrainRouteId = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ArrivalTime = new DateTime(2025, 8, 30, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 30, 11, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 250.0,
+                            Order = 3,
+                            Platform = 2,
+                            StationId = 8,
+                            TrainRouteId = 4
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ArrivalTime = new DateTime(2025, 8, 30, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 30, 13, 15, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 500.0,
+                            Order = 4,
+                            Platform = 1,
+                            StationId = 1,
+                            TrainRouteId = 4
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ArrivalTime = new DateTime(2025, 8, 31, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 31, 9, 15, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 0.0,
+                            Order = 1,
+                            Platform = 1,
+                            StationId = 6,
+                            TrainRouteId = 5
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ArrivalTime = new DateTime(2025, 8, 31, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 31, 10, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 180.0,
+                            Order = 2,
+                            Platform = 2,
+                            StationId = 7,
+                            TrainRouteId = 5
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ArrivalTime = new DateTime(2025, 8, 31, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 31, 11, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 130.0,
+                            Order = 3,
+                            Platform = 2,
+                            StationId = 8,
+                            TrainRouteId = 5
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ArrivalTime = new DateTime(2025, 8, 31, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            DepartureTime = new DateTime(2025, 8, 31, 12, 10, 0, 0, DateTimeKind.Unspecified),
+                            DistanceFromPreviousStation = 400.0,
+                            Order = 4,
+                            Platform = 3,
+                            StationId = 2,
+                            TrainRouteId = 5
                         });
                 });
 
@@ -267,6 +549,62 @@ namespace Railroad.Migrations
                             DistrictName = "Halych",
                             Name = "South Station",
                             NuberOfPlatforms = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityName = "Odesa",
+                            DistrictName = "Primorsky",
+                            Name = "North Station",
+                            NuberOfPlatforms = 4
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityName = "Dnipro",
+                            DistrictName = "Novokodatsky",
+                            Name = "East Station",
+                            NuberOfPlatforms = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CityName = "Kharkiv",
+                            DistrictName = "Kholodnohirsk",
+                            Name = "West Station",
+                            NuberOfPlatforms = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CityName = "Vinnytsia",
+                            DistrictName = "Center",
+                            Name = "Central Vinnytsia",
+                            NuberOfPlatforms = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CityName = "Cherkasy",
+                            DistrictName = "Center",
+                            Name = "Cherkasy Station",
+                            NuberOfPlatforms = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CityName = "Zhytomyr",
+                            DistrictName = "Center",
+                            Name = "Zhytomyr Station",
+                            NuberOfPlatforms = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CityName = "Poltava",
+                            DistrictName = "Center",
+                            Name = "Poltava Station",
+                            NuberOfPlatforms = 2
                         });
                 });
 
@@ -347,7 +685,7 @@ namespace Railroad.Migrations
                             CarriageWeight = 15.0,
                             CustomerId = 2,
                             DepartureStationId = 2,
-                            DestinationStationId = 1,
+                            DestinationStationId = 3,
                             FinalPrice = 307.5m,
                             PriceId = 1,
                             PurchaseDate = new DateTime(2025, 8, 28, 9, 1, 1, 0, DateTimeKind.Unspecified),
@@ -360,8 +698,8 @@ namespace Railroad.Migrations
                             Id = 3,
                             CarriagePrice = 30m,
                             CarriageWeight = 12.0,
-                            CustomerId = 2,
-                            DepartureStationId = 2,
+                            CustomerId = 3,
+                            DepartureStationId = 8,
                             DestinationStationId = 1,
                             FinalPrice = 300m,
                             PriceId = 1,
@@ -404,6 +742,24 @@ namespace Railroad.Migrations
                             Id = 2,
                             Name = "Express-5",
                             NumberOfSeats = 150
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Rapid-3",
+                            NumberOfSeats = 180
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Local-2",
+                            NumberOfSeats = 100
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "NightLine-7",
+                            NumberOfSeats = 220
                         });
                 });
 
@@ -441,6 +797,24 @@ namespace Railroad.Migrations
                             Id = 2,
                             Name = "Lviv - Odesa Route",
                             TrainId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Odesa - Kharkiv Route",
+                            TrainId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Dnipro - Kyiv Route",
+                            TrainId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Vinnytsia - Lviv Route",
+                            TrainId = 5
                         });
                 });
 

@@ -27,9 +27,6 @@ namespace Railroad.BLL.Services
                 RoutePoints = r.RoutePoints.OrderBy(p => p.Order).ToList(),
             });
 
-
-
-
             var baseFilter = orderedRoutes.Where(route =>
             {
                 var departure = route.RoutePoints.FirstOrDefault(p => p.Station.CityName == departureCityName);
@@ -40,9 +37,27 @@ namespace Railroad.BLL.Services
                     && departure.Order < arrival.Order;
             });
 
-            var baseDTO = baseFilter.Select(routes => MapToDTO(routes, departureCityName, arrivalCityName)).ToList();
-            return baseDTO;
+            if (filterDTO.DepartureDate is null & filterDTO.ArrivalDate is null)
+            {
+                return baseFilter.Select(routes => MapToDTO(routes, departureCityName, arrivalCityName)).ToList();
+            }
 
+            if(filterDTO.DepartureDate.HasValue && filterDTO.ArrivalDate is null)
+            {
+                var DDFilter = baseFilter.Where(route => route.RoutePoints.Any(point => point.DepartureTime == filterDTO.DepartureDate));
+                return DDFilter.Select(routes => MapToDTO(routes, departureCityName, arrivalCityName)).ToList();
+            }
+
+            if (filterDTO.ArrivalDate.HasValue && filterDTO.DepartureDate is null)
+            {
+                var ADFilter = baseFilter.Where(route => route.RoutePoints.Any(point => point.ArrivalTime == filterDTO.ArrivalDate));
+                return ADFilter.Select(routes => MapToDTO(routes, departureCityName, arrivalCityName)).ToList();
+            }
+
+            var fullFiltered = baseFilter.Where(route => route.RoutePoints.Any(point => point.DepartureTime == filterDTO.DepartureDate) &&
+            route.RoutePoints.Any(point => point.ArrivalTime == filterDTO.ArrivalDate));
+
+            return fullFiltered.Select(routes => MapToDTO(routes, departureCityName, arrivalCityName)).ToList();
         }
 
         public FilteredRouteReadDTO MapToDTO(TrainRoute route, string departureCityName, string arrivalCityName)
