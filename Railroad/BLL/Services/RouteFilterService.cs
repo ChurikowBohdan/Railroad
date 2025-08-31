@@ -29,24 +29,26 @@ namespace Railroad.BLL.Services
 
 
 
-            var baseFilter = orderedRoutes.Where(route => route.RoutePoints
-            .Any(departurePoint => departurePoint.Station.CityName == departureCityName) && route.RoutePoints
-            .Any(arrivalPoint => arrivalPoint.Station.CityName == arrivalCityName));
 
-            var baseDTO = baseFilter.Select(routes => MapToDTO(routes)).ToList();
-            return baseDTO;
-
-            if (filterDTO.DepartureDate is null && filterDTO.ArrivalDate is null)
+            var baseFilter = orderedRoutes.Where(route =>
             {
-                return baseDTO;
-            }
+                var departure = route.RoutePoints.FirstOrDefault(p => p.Station.CityName == departureCityName);
+                var arrival = route.RoutePoints.FirstOrDefault(p => p.Station.CityName == arrivalCityName);
+
+                return departure != null
+                    && arrival != null
+                    && departure.Order < arrival.Order;
+            });
+
+            var baseDTO = baseFilter.Select(routes => MapToDTO(routes, departureCityName, arrivalCityName)).ToList();
+            return baseDTO;
 
         }
 
-        public FilteredRouteReadDTO MapToDTO (TrainRoute route)
+        public FilteredRouteReadDTO MapToDTO(TrainRoute route, string departureCityName, string arrivalCityName)
         {
-            var departurePoint = route.RoutePoints.First();
-            var arrivalPoint = route.RoutePoints.Last();
+            var departurePoint = route.RoutePoints.First(p => p.Station.CityName == departureCityName);
+            var arrivalPoint = route.RoutePoints.First(p => p.Station.CityName == arrivalCityName);
             return new FilteredRouteReadDTO
             {
                 TrainRouteId = route.Id,
