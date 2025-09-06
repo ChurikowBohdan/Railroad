@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Railroad.BLL.DTOs;
 using Railroad.BLL.ServiceIntefaces;
+using Railroad.DAL.Entities;
 
 namespace Railroad.PL.Controllers
 {

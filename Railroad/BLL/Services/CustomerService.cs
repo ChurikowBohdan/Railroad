@@ -15,24 +15,42 @@ namespace Railroad.BLL.Services
         }
         public async Task AddAsync(CustomerWriteDTO customerWriteDTO)
         {
-            var entity = new Customer
+            var persons = await _unitOfWork.PersonRepository.GetAllAsync();
+            var person = persons.FirstOrDefault(x => x.PhoneNumber == customerWriteDTO.PhoneNumber);
+            
+            if (person is not null)
             {
-                DiscountValue = customerWriteDTO.DiscountValue,
-                Email = customerWriteDTO.Email,
-                RegistrationDate = DateTime.Now,
-                Person = new Person
+                var customer = new Customer
                 {
-                    Name = customerWriteDTO.Name,
-                    Surname = customerWriteDTO.Surname,
-                    PhoneNumber = customerWriteDTO.PhoneNumber,
-                    Country = customerWriteDTO.Country,
-                    City = customerWriteDTO.City,
-                    BirthDate = customerWriteDTO.BirthDate
-                }
-            };
+                    DiscountValue = customerWriteDTO.DiscountValue,
+                    Email = customerWriteDTO.Email,
+                    RegistrationDate = DateTime.Now,
+                    Person = person
 
-            await _unitOfWork.CustomerRepository.AddAsync(entity);
-            await _unitOfWork.SaveAsync();
+                };
+                await _unitOfWork.CustomerRepository.AddAsync(customer);
+                await _unitOfWork.SaveAsync();
+            }
+            else
+            {
+                var customer = new Customer
+                {
+                    DiscountValue = customerWriteDTO.DiscountValue,
+                    Email = customerWriteDTO.Email,
+                    RegistrationDate = DateTime.Now,
+                    Person = new Person
+                    {
+                        Name = customerWriteDTO.Name,
+                        Surname = customerWriteDTO.Surname,
+                        PhoneNumber = customerWriteDTO.PhoneNumber,
+                        Country = customerWriteDTO.Country,
+                        City = customerWriteDTO.City,
+                        BirthDate = customerWriteDTO.BirthDate
+                    }
+                };
+                await _unitOfWork.CustomerRepository.AddAsync(customer);
+                await _unitOfWork.SaveAsync();
+            }
         }
 
         public async Task DeleteAsync(int id)

@@ -15,6 +15,7 @@ namespace Railroad.DAL.Data
             _context = context;
         }
 
+        public IAdminRepository AdminRepository => new AdminRepository(_context);
         public ICustomerRepository CustomerRepository => new CustomerRepository(_context);
         public IPersonRepository PersonRepository => new PersonRepository(_context);
         public IPriceRepository PriceRepository => new PriceRepository(_context);
@@ -23,6 +24,7 @@ namespace Railroad.DAL.Data
         public ITicketRepository TicketRepository => new TicketRepository(_context);
         public ITrainRepository TrainRepository => new TrainRepository(_context);
         public ITrainRouteRepository TrainRouteRepository => new TrainRouteRepository(_context);
+        public IUserRepository UserRepository => new UserRepository(_context);
 
         public async Task SaveAsync()
         {

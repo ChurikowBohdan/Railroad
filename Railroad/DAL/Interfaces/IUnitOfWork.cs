@@ -4,6 +4,7 @@ namespace Railroad.DAL.Interfaces
 {
         public interface IUnitOfWork : IDisposable
         {
+            IAdminRepository AdminRepository { get; }
             ICustomerRepository CustomerRepository { get; }
             IPersonRepository PersonRepository { get; }
             IPriceRepository PriceRepository { get; }
@@ -12,6 +13,7 @@ namespace Railroad.DAL.Interfaces
             ITicketRepository TicketRepository { get; }
             ITrainRepository TrainRepository { get; }
             ITrainRouteRepository TrainRouteRepository { get; }
+            IUserRepository UserRepository { get; }
 
 
             Task SaveAsync();

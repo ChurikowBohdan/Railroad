@@ -1,11 +1,9 @@
-﻿using Railroad.DAL.Entities;
-using System.ComponentModel.DataAnnotations;
-
-namespace Railroad.BLL.DTOs
+﻿namespace Railroad.BLL.DTOs
 {
-    public class CustomerReadDTO
+    public class AdminReadDTO
     {
-        public int CustomerId { get; init; }
+        public int AdminId { get; set; }
+        public string Position { get; set; }
         public string Name { get; init; }
         public string Surname { get; init; }
         public string PhoneNumber { get; init; }

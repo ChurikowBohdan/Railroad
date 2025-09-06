@@ -1,7 +1,8 @@
 ﻿namespace Railroad.BLL.DTOs
 {
-    public class CustomerWriteDTO
+    public class AdminWriteDTO
     {
+        public string Position { get; set; }
         public string Name { get; init; }
         public string Surname { get; init; }
         public string Password { get; init; }

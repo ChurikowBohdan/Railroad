@@ -120,11 +120,7 @@ namespace Railroad.DAL.Data
             );
         }
 
-
-
-
-
-
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Price> Prices { get; set; }
@@ -133,6 +129,7 @@ namespace Railroad.DAL.Data
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TrainRoute> TrainRoutes { get; set; }
         public DbSet<Train> Trains { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }
