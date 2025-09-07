@@ -20,7 +20,7 @@ namespace Railroad.PL.Controllers
         public static User user = new();
 
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(UserDTO request)
+        public async Task<ActionResult<User>> Register(LoginWriteDTO request)
         {
             var user = await authService.RegisterAsync(request);
             if(user is null)

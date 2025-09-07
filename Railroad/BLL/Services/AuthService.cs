@@ -47,7 +47,7 @@ namespace Railroad.BLL.Services
             };
         }
 
-        public async Task<User?> RegisterAsync(UserDTO request)
+        public async Task<User?> RegisterAsync(LoginWriteDTO request)
         {
             var users = await _unitOfWork.UserRepository.GetAllAsync();
             if (users.Any(u => u.Username == request.Username))
@@ -60,7 +60,15 @@ namespace Railroad.BLL.Services
                 .HashPassword(user, request.Password);
             user.Username = request.Username;
             user.PasswordHash = hashedPassword;
-
+            user.Person = new Person
+            {
+                Name = request.Name,
+                Surname = request.Surname,
+                PhoneNumber = request.PhoneNumber,
+                Country = request.Country,
+                City = request.City,
+                BirthDate = request.BirthDate
+            };
             await _unitOfWork.UserRepository.AddAsync(user);
             await _unitOfWork.SaveAsync();
 
@@ -75,13 +83,13 @@ namespace Railroad.BLL.Services
                 return null;
             }
 
-            return 
+            return await CreateTokenResponse(user);
         }
 
         private async Task<User?> ValidateRefreshTokenAsync(int userId, string refreshToken)
         {
             var user = await _unitOfWork.UserRepository.GetByIdAsync(userId);
-            if (user is null || user.RefrestToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
+            if (user is null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
             {
                 return null;
             }
@@ -100,7 +108,7 @@ namespace Railroad.BLL.Services
         private async Task<string> GenerateAndSaveRefreshTokenAsync(User user)
         {
             var refreshToken = GenerateRefreshToken();
-            user.RefrestToken = refreshToken;
+            user.RefreshToken = refreshToken;
             user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
             await _unitOfWork.SaveAsync();
             return refreshToken;
@@ -112,16 +120,9 @@ namespace Railroad.BLL.Services
             {
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim("PersonId", user.PersonId.ToString())
             };
-            //Checking for user role
-            if (user.Admin is not null)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, user.Admin.Role));
-            }
-            else if (user.Customer is not null)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, user.Customer.Role));
-            }
 
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_configuration.GetValue<string>("AppSettings:Token")!));

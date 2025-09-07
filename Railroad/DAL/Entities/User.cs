@@ -6,9 +6,10 @@ namespace Railroad.DAL.Entities
     {
         public string Username { get; set; }
         public string PasswordHash { get; set; }
-        public Customer? Customer { get; set; }
-        public Admin? Admin { get; set; }
-        public string? RefrestToken { get; set; }
+        public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiryTime { get; set; }
+        public string Role { get; set; } = string.Empty;
+        public int PersonId { get; set; }
+        public Person Person { get; set; }
     }
 }

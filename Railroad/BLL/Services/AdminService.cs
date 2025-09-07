@@ -1,5 +1,6 @@
 ﻿using Railroad.BLL.DTOs;
 using Railroad.BLL.ServiceIntefaces;
+using Railroad.DAL.Entities;
 using Railroad.DAL.Interfaces;
 
 namespace Railroad.BLL.Services
@@ -12,29 +13,100 @@ namespace Railroad.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public Task AddAsync(AdminWriteDTO data)
+        public async Task AddAsync(AdminWriteDTO adminWriteDTO)
         {
-            throw new NotImplementedException();
+            var persons = await _unitOfWork.PersonRepository.GetAllAsync();
+            var person = persons.FirstOrDefault(x => x.PhoneNumber == adminWriteDTO.PhoneNumber);
+
+            if (person is not null)
+            {
+                var admin = new Admin
+                {
+                    Position = adminWriteDTO.Position,
+                    Person = person
+                };
+                await _unitOfWork.AdminRepository.AddAsync(admin);
+                await _unitOfWork.SaveAsync();
+            }
+            else
+            {
+                var admin = new Admin
+                {
+                    Position= adminWriteDTO.Position,
+                    DiscountValue = adminWriteDTO.DiscountValue,
+                    Email = adminWriteDTO.Email,
+                    RegistrationDate = DateTime.Now,
+                    Person = new Person
+                    {
+                        Name = adminWriteDTO.Name,
+                        Surname = adminWriteDTO.Surname,
+                        PhoneNumber = adminWriteDTO.PhoneNumber,
+                        Country = adminWriteDTO.Country,
+                        City = adminWriteDTO.City,
+                        BirthDate = adminWriteDTO.BirthDate
+                    }
+                };
+                await _unitOfWork.AdminRepository.AddAsync(admin);
+                await _unitOfWork.SaveAsync();
+            }
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.AdminRepository.DeleteByIdAsync(id);
         }
 
-        public Task<IEnumerable<AdminReadDTO>> GetAllAsync()
+        public async Task<IEnumerable<AdminReadDTO>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var admins = await _unitOfWork.AdminRepository.GetAllWithDetailsAsync();
+            return admins.Select(admin => MapToAdminReadDTO(admin));
         }
 
-        public Task<AdminReadDTO?> GetByIdAsync(int id)
+        public async Task<AdminReadDTO?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            if (id > 0)
+            {
+                var entity = await _unitOfWork.AdminRepository.GetByIdWithDetailsAsync(id);
+                if (entity != null)
+                {
+                    return MapToAdminReadDTO(entity);
+                }
+            }
+            return null;
         }
 
-        public Task UpdateAsync(int Id, AdminWriteDTO data)
+        public async Task UpdateAsync(int Id, AdminWriteDTO adminWriteDTO)
         {
-            throw new NotImplementedException();
+            var admin = await _unitOfWork.AdminRepository.GetByIdWithDetailsAsync(Id);
+            var entity = new Admin
+            {
+                Id = admin.Id,
+                PersonId = admin.PersonId,
+                Position = adminWriteDTO.Position,
+                DiscountValue = adminWriteDTO.DiscountValue,
+                Email = adminWriteDTO.Email,
+                RegistrationDate = admin.RegistrationDate,
+                Person = admin.Person,
+                Tickets = admin.Tickets,
+            };
+
+            _unitOfWork.AdminRepository.Update(entity);
+            await _unitOfWork.SaveAsync();
         }
+
+        private AdminReadDTO MapToAdminReadDTO(Admin admin) => new AdminReadDTO
+        {
+            AdminId = admin.Id,
+            Name = admin.Person.Name,
+            Surname = admin.Person.Surname,
+            PhoneNumber =   admin.Person.PhoneNumber,
+            Country = admin.Person.Country,
+            City = admin.Person.City,
+            BirthDate = admin.Person.BirthDate,
+            DiscountValue = admin.DiscountValue,
+            Email = admin.Email,
+            RegistrationDate = admin.RegistrationDate,
+            TicketsIds = admin.Tickets.Select(t => t.Id).ToList()
+        };
     }
 }
