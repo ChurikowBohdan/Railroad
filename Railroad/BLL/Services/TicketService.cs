@@ -56,6 +56,7 @@ namespace Railroad.BLL.Services
         public async Task DeleteAsync(int id)
         {
             await _unitOfWork.TicketRepository.DeleteByIdAsync(id);
+            await _unitOfWork.SaveAsync();
         }
 
         public async Task<IEnumerable<TicketReadDTO>> GetAllAsync()

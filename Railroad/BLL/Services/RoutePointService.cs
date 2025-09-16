@@ -37,6 +37,7 @@ namespace Railroad.BLL.Services
         public async Task DeleteAsync(int id)
         {
             await _unitOfWork.RoutePointRepository.DeleteByIdAsync(id);
+            await _unitOfWork.SaveAsync();
         }
 
         public async Task<IEnumerable<RoutePointReadDTO>> GetAllAsync()
