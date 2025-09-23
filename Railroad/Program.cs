@@ -51,7 +51,9 @@ builder.Services.AddScoped<ITrainRepository, TrainRepository>();
 builder.Services.AddScoped<ITrainRouteRepository, TrainRouteRepository>();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IPriceService, PriceService>();
 builder.Services.AddScoped<IRouteFilterService, RouteFilterService>();
 builder.Services.AddScoped<IRoutePointService, RoutePointService>();

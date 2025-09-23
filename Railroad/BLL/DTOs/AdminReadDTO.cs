@@ -7,7 +7,6 @@
         public string Name { get; init; }
         public string Surname { get; init; }
         public string PhoneNumber { get; init; }
-        public string Password { get; init; }
         public string Country { get; init; }
         public string City { get; init; }
 
