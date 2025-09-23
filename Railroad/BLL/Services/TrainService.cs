@@ -52,14 +52,10 @@ namespace Railroad.BLL.Services
         public async Task UpdateAsync(int trainId, TrainWriteDTO trainWriteDTO)
         {
             var train = await _unitOfWork.TrainRepository.GetByIdAsync(trainId);
-            var entity = new Train
-            {
-                Id = train.Id,
-                Name= trainWriteDTO.Name,
-                NumberOfSeats = trainWriteDTO.NumberOfSeats,
-            };
 
-            _unitOfWork.TrainRepository.Update(entity);
+            train.Name = trainWriteDTO.Name;
+            train.NumberOfSeats = trainWriteDTO.NumberOfSeats;
+
             await _unitOfWork.SaveAsync();
         }
 

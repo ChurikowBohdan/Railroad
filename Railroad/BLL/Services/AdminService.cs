@@ -76,22 +76,14 @@ namespace Railroad.BLL.Services
             return null;
         }
 
-        public async Task UpdateAsync(int Id, AdminWriteDTO adminWriteDTO)
+        public async Task UpdateAsync(int id, AdminWriteDTO adminWriteDTO)
         {
-            var admin = await _unitOfWork.AdminRepository.GetByIdWithDetailsAsync(Id);
-            var entity = new Admin
-            {
-                Id = admin.Id,
-                PersonId = admin.PersonId,
-                Position = adminWriteDTO.Position,
-                DiscountValue = adminWriteDTO.DiscountValue,
-                Email = adminWriteDTO.Email,
-                RegistrationDate = admin.RegistrationDate,
-                Person = admin.Person,
-                Tickets = admin.Tickets,
-            };
+            var admin = await _unitOfWork.AdminRepository.GetByIdWithDetailsAsync(id);
 
-            _unitOfWork.AdminRepository.Update(entity);
+            admin.Position = adminWriteDTO.Position;
+            admin.DiscountValue = adminWriteDTO.DiscountValue;
+            admin.Email = adminWriteDTO.Email;
+
             await _unitOfWork.SaveAsync();
         }
 

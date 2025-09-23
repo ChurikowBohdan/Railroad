@@ -54,20 +54,17 @@ namespace Railroad.BLL.Services
             return null;
         }
 
-        public async Task UpdateAsync(int Id, PersonWriteDTO personWriteDTO)
+        public async Task UpdateAsync(int id, PersonWriteDTO personWriteDTO)
         {
-            var entity = new Person
-            {
-                Id = Id,
-                Name = personWriteDTO.Name,
-                Surname = personWriteDTO.Surname,
-                PhoneNumber = personWriteDTO.PhoneNumber,
-                Country = personWriteDTO.Country,
-                City = personWriteDTO.City,
-                BirthDate = personWriteDTO.BirthDate
-            };
+            var person = await _unitOfWork.PersonRepository.GetByIdAsync(id);
 
-            _unitOfWork.PersonRepository.Update(entity);
+            person.Name = personWriteDTO.Name;
+            person.Surname = personWriteDTO.Surname;
+            person.PhoneNumber = personWriteDTO.PhoneNumber;
+            person.Country = personWriteDTO.Country;
+            person.City = personWriteDTO.City;
+            person.BirthDate = personWriteDTO.BirthDate;
+
             await _unitOfWork.SaveAsync();
         }
 

@@ -49,16 +49,12 @@ namespace Railroad.BLL.Services
             return null;
         }
 
-        public async Task UpdateAsync(int priceId, PriceWriteDTO priceWriteDTO)
+        public async Task UpdateAsync(int id, PriceWriteDTO priceWriteDTO)
         {
-            var entity = new Price
-            {
-                Id = priceId,
-                PriceForKGOfCarriageWeight = priceWriteDTO.PriceForKGOfCarriageWeight,
-                PriceForKilometer = priceWriteDTO.PriceForKilometer
-            };
+            var price = await _unitOfWork.PriceRepository.GetByIdAsync(id);
+            price.PriceForKGOfCarriageWeight = priceWriteDTO.PriceForKGOfCarriageWeight;
+            price.PriceForKilometer = priceWriteDTO.PriceForKilometer;
 
-            _unitOfWork.PriceRepository.Update(entity);
             await _unitOfWork.SaveAsync();
         }
 

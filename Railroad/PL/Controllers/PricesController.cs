@@ -53,10 +53,10 @@ namespace Railroad.PL.Controllers
 
         // PUT: api/prices/1
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int Id, [FromBody] PriceWriteDTO value)
+        public async Task<ActionResult> Update(int id, [FromBody] PriceWriteDTO value)
         {
-            await _priceService.UpdateAsync(Id, value);
-            var updatedPrice = await _priceService.GetByIdAsync(Id);
+            await _priceService.UpdateAsync(id, value);
+            var updatedPrice = await _priceService.GetByIdAsync(id);
             return Ok(updatedPrice);
         }
 

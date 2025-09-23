@@ -59,22 +59,18 @@ namespace Railroad.BLL.Services
             return null;
         }
 
-        public async Task UpdateAsync(int routePointId, RoutePointWriteDTO routePointWriteDTO)
+        public async Task UpdateAsync(int id, RoutePointWriteDTO routePointWriteDTO)
         {
-            var route = await _unitOfWork.RoutePointRepository.GetByIdWithDetailsAsync(routePointId);
-            var entity = new RoutePoint
-            {
-                Id = route.Id,
-                ArrivalTime = routePointWriteDTO.ArrivalTime,
-                DepartureTime = routePointWriteDTO.DepartureTime,
-                Platform = routePointWriteDTO.Platform,
-                Order = routePointWriteDTO.Order,
-                DistanceFromPreviousStation = routePointWriteDTO.DistanceFromPreviousStation,
-                TrainRoute = route.TrainRoute,
-                Station = route.Station
-            };
+            var routePoint = await _unitOfWork.RoutePointRepository.GetByIdWithDetailsAsync(id);
 
-            _unitOfWork.RoutePointRepository.Update(entity);
+            routePoint.ArrivalTime = routePointWriteDTO.ArrivalTime;
+            routePoint.DepartureTime = routePointWriteDTO.DepartureTime;
+            routePoint.Platform = routePointWriteDTO.Platform;
+            routePoint.Order = routePointWriteDTO.Order;
+            routePoint.DistanceFromPreviousStation = routePointWriteDTO.DistanceFromPreviousStation;
+            routePoint.TrainRouteId = routePointWriteDTO.TrainRouteId;
+            routePoint.StationId = routePointWriteDTO.StationId;
+
             await _unitOfWork.SaveAsync();
         }
 

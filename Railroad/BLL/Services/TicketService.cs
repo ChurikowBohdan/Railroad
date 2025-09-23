@@ -101,22 +101,17 @@ namespace Railroad.BLL.Services
                 decimal roadPrice = totalDistance * price.PriceForKilometer;
                 decimal carriagePrice = (decimal)ticketWriteDTO.CarriageWeight * price.PriceForKGOfCarriageWeight;
 
-                var entity = new Ticket
-                {
-                    Id = ticket.Id,
-                    DepartureStationId = ticketWriteDTO.DepartureStationId,
-                    DestinationStationId = ticketWriteDTO.DestinationStationId,
-                    CarriageWeight = ticketWriteDTO.CarriageWeight,
-                    Seat = ticketWriteDTO.Seat,
-                    CarriagePrice = carriagePrice,
-                    RoadPrice = roadPrice,
-                    FinalPrice = roadPrice + carriagePrice,
-                    TrainRoute = route,
-                    Price = price,
-                    Customer = customer,
-                };
+                ticket.CustomerId = customer.Id;
+                ticket.DepartureStationId = ticketWriteDTO.DepartureStationId;
+                ticket.DestinationStationId = ticketWriteDTO.DestinationStationId;
+                ticket.CarriageWeight = ticketWriteDTO.CarriageWeight;
+                ticket.Seat = ticketWriteDTO.Seat;
+                ticket.CarriagePrice = carriagePrice;
+                ticket.RoadPrice = roadPrice;
+                ticket.FinalPrice = roadPrice + carriagePrice;
+                ticket.TrainRoute = route;
+                ticket.Price = price;
 
-                await _unitOfWork.TicketRepository.AddAsync(entity);
                 await _unitOfWork.SaveAsync();
             }
 

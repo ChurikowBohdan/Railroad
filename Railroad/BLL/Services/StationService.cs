@@ -52,19 +52,15 @@ namespace Railroad.BLL.Services
             return null;
         }
 
-        public async Task UpdateAsync(int stationId, StationWriteDTO stationWriteDTO)
+        public async Task UpdateAsync(int id, StationWriteDTO stationWriteDTO)
         {
-            var station = await _unitOfWork.StationRepository.GetByIdAsync(stationId);
-            var entity = new Station
-            {
-                Id = station.Id,
-                Name = stationWriteDTO.Name,
-                CityName = stationWriteDTO.StationCityName,
-                DistrictName = stationWriteDTO.StationDistrictName,
-                NuberOfPlatforms = stationWriteDTO.NuberOfPlatforms
-            };
+            var station = await _unitOfWork.StationRepository.GetByIdAsync(id);
 
-            _unitOfWork.StationRepository.Update(entity);
+            station.Name = stationWriteDTO.Name;
+            station.CityName = stationWriteDTO.StationCityName;
+            station.DistrictName = stationWriteDTO.StationDistrictName;
+            station.NuberOfPlatforms = stationWriteDTO.NuberOfPlatforms;
+
             await _unitOfWork.SaveAsync();
         }
 

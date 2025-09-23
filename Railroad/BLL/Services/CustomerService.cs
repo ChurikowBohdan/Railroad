@@ -31,6 +31,7 @@ namespace Railroad.BLL.Services
                 await _unitOfWork.CustomerRepository.AddAsync(customer);
                 await _unitOfWork.SaveAsync();
             }
+
             else
             {
                 var customer = new Customer
@@ -90,21 +91,19 @@ namespace Railroad.BLL.Services
             return null;
         }
 
-        public async Task UpdateAsync(int customerId, CustomerWriteDTO customerWriteDTO)
+        public async Task UpdateAsync(int id, CustomerWriteDTO customerWriteDTO)
         {
-            var customer = await _unitOfWork.CustomerRepository.GetByIdWithDetailsAsync(customerId);
-            var entity = new Customer
-            {
-                Id = customer.Id,
-                PersonId = customer.PersonId,
-                DiscountValue = customerWriteDTO.DiscountValue,
-                Email = customerWriteDTO.Email,
-                RegistrationDate = customer.RegistrationDate,
-                Person = customer.Person,
-                Tickets = customer.Tickets,
-            };
+            var customer = await _unitOfWork.CustomerRepository.GetByIdWithDetailsAsync(id);
+            var person = await _unitOfWork.PersonRepository.GetByIdAsync(customer.PersonId);
 
-            _unitOfWork.CustomerRepository.Update(entity);
+            customer.DiscountValue = customerWriteDTO.DiscountValue;
+            customer.Email = customerWriteDTO.Email;
+            person.Name = customerWriteDTO.Name;
+            person.Surname = customerWriteDTO.Surname;
+            person.PhoneNumber = customerWriteDTO.PhoneNumber;
+            person.City = customerWriteDTO.City;
+            person.Country = customerWriteDTO.Country;
+
             await _unitOfWork.SaveAsync();
         }
 

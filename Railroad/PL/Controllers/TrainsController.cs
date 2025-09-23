@@ -52,10 +52,10 @@ namespace Railroad.PL.Controllers
 
         // PUT: api/trains/1
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int Id, [FromBody] TrainWriteDTO value)
+        public async Task<ActionResult> Update(int id, [FromBody] TrainWriteDTO value)
         {
-            await _trainService.UpdateAsync(Id, value);
-            var updatedTrain = await _trainService.GetByIdAsync(Id);
+            await _trainService.UpdateAsync(id, value);
+            var updatedTrain = await _trainService.GetByIdAsync(id);
             return Ok(updatedTrain);
         }
 
