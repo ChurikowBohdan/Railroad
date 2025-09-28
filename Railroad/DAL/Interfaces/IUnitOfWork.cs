@@ -4,8 +4,6 @@ namespace Railroad.DAL.Interfaces
 {
         public interface IUnitOfWork : IDisposable
         {
-            IAdminRepository AdminRepository { get; }
-            ICustomerRepository CustomerRepository { get; }
             IPersonRepository PersonRepository { get; }
             IPriceRepository PriceRepository { get; }
             IRoutePointRepository RoutePointRepository { get; }

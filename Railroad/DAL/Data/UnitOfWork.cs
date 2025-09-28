@@ -15,8 +15,6 @@ namespace Railroad.DAL.Data
             _context = context;
         }
 
-        public IAdminRepository AdminRepository => new AdminRepository(_context);
-        public ICustomerRepository CustomerRepository => new CustomerRepository(_context);
         public IPersonRepository PersonRepository => new PersonRepository(_context);
         public IPriceRepository PriceRepository => new PriceRepository(_context);
         public IRoutePointRepository RoutePointRepository => new RoutePointRepository(_context);

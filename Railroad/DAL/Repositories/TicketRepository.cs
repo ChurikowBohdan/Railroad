@@ -13,7 +13,7 @@ namespace Railroad.DAL.Repositories
 
         public async Task<IEnumerable<Ticket>> GetAllWithDetailsAsync()
         {
-            return await _dbSet.Include(x => x.Customer).ThenInclude(x => x.Person)
+            return await _dbSet.Include(x => x.Person)
                 .Include(x => x.TrainRoute).ThenInclude(x => x.Train)
                 .Include(x => x.TrainRoute).ThenInclude(x => x.RoutePoints)
                 .Include(x => x.Price)
@@ -22,7 +22,7 @@ namespace Railroad.DAL.Repositories
 
         public async Task<Ticket?> GetByIdWithDetailsAsync(int id)
         {
-            return await _dbSet.Include(x => x.Customer).ThenInclude(x => x.Person)
+            return await _dbSet.Include(x => x.Person)
                 .Include(x => x.TrainRoute).ThenInclude(x => x.Train)
                 .Include(x => x.TrainRoute).ThenInclude(x => x.RoutePoints)
                 .Include(x => x.Price)

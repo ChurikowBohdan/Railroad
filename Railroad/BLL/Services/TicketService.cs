@@ -16,13 +16,13 @@ namespace Railroad.BLL.Services
         {
             var route = await _unitOfWork.TrainRouteRepository.GetByIdWithDetailsAsync(ticketWriteDTO.TrainRouteId);
             var price = await _unitOfWork.PriceRepository.GetByIdAsync(ticketWriteDTO.PriceId);
-            var customer = await _unitOfWork.CustomerRepository.GetByIdWithDetailsAsync(ticketWriteDTO.CustomerId);
+            var person = await _unitOfWork.PersonRepository.GetByIdAsync(ticketWriteDTO.PersonId);
             var departurePoint = route.RoutePoints
                 .FirstOrDefault(rp => rp.StationId == ticketWriteDTO.DepartureStationId);
             var destinationPoint = route.RoutePoints
                 .FirstOrDefault(rp => rp.StationId == ticketWriteDTO.DestinationStationId);
 
-            if (customer is not null && price is not null && route is not null && departurePoint is not null && destinationPoint is not null)
+            if (person is not null && price is not null && route is not null && departurePoint is not null && destinationPoint is not null)
             {
 
                 var routePoints = route.RoutePoints
@@ -45,7 +45,7 @@ namespace Railroad.BLL.Services
                     FinalPrice = roadPrice + carriagePrice,
                     TrainRoute = route,
                     Price = price,
-                    Customer = customer,
+                    Person = person,
                 };
 
                 await _unitOfWork.TicketRepository.AddAsync(entity);
@@ -83,13 +83,13 @@ namespace Railroad.BLL.Services
             var ticket = await _unitOfWork.TicketRepository.GetByIdWithDetailsAsync(ticketId);
             var route = await _unitOfWork.TrainRouteRepository.GetByIdWithDetailsAsync(ticketWriteDTO.TrainRouteId);
             var price = await _unitOfWork.PriceRepository.GetByIdAsync(ticketWriteDTO.PriceId);
-            var customer = await _unitOfWork.CustomerRepository.GetByIdWithDetailsAsync(ticketWriteDTO.CustomerId);
+            var person = await _unitOfWork.PersonRepository.GetByIdAsync(ticketWriteDTO.PersonId);
             var departurePoint = route.RoutePoints
                 .FirstOrDefault(rp => rp.StationId == ticketWriteDTO.DepartureStationId);
             var destinationPoint = route.RoutePoints
                 .FirstOrDefault(rp => rp.StationId == ticketWriteDTO.DestinationStationId);
 
-            if (customer is not null && price is not null && route is not null && departurePoint is not null && destinationPoint is not null)
+            if (person is not null && price is not null && route is not null && departurePoint is not null && destinationPoint is not null)
             {
 
                 var routePoints = route.RoutePoints
@@ -101,7 +101,7 @@ namespace Railroad.BLL.Services
                 decimal roadPrice = totalDistance * price.PriceForKilometer;
                 decimal carriagePrice = (decimal)ticketWriteDTO.CarriageWeight * price.PriceForKGOfCarriageWeight;
 
-                ticket.CustomerId = customer.Id;
+                ticket.PersonId = person.Id;
                 ticket.DepartureStationId = ticketWriteDTO.DepartureStationId;
                 ticket.DestinationStationId = ticketWriteDTO.DestinationStationId;
                 ticket.CarriageWeight = ticketWriteDTO.CarriageWeight;
@@ -122,7 +122,7 @@ namespace Railroad.BLL.Services
             TicketId = ticket.Id,
             TrainRouteId = ticket.TrainRouteId,
             PriceId = ticket.PriceId,
-            CustomerId = ticket.CustomerId,
+            PersonId = ticket.PersonId,
             DepartureStationId = ticket.DepartureStationId,
             DestinationStationId = ticket.DestinationStationId,
             CarriageWeight = ticket.CarriageWeight,

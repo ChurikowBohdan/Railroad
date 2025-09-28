@@ -81,14 +81,6 @@ namespace Railroad.BLL.Services
                     user.Role = request.Role;
                     user.Person = newPerson;
 
-                    var administrator = new Admin
-                    {
-                        Email = request.Email,
-                        RegistrationDate = DateTime.Now,
-                        Person = newPerson
-                    };
-
-                    await _unitOfWork.AdminRepository.AddAsync(administrator);
                     await _unitOfWork.UserRepository.AddAsync(user);
                     await _unitOfWork.SaveAsync();
 
@@ -99,14 +91,6 @@ namespace Railroad.BLL.Services
                 user.PasswordHash = hashedPassword;
                 user.Person = person;
 
-                var admin = new Admin
-                {
-                    Email = request.Email,
-                    RegistrationDate = DateTime.Now,
-                    Person = person
-                };
-
-                await _unitOfWork.AdminRepository.AddAsync(admin);
                 await _unitOfWork.UserRepository.AddAsync(user);
                 await _unitOfWork.SaveAsync();
 
@@ -130,14 +114,6 @@ namespace Railroad.BLL.Services
                     user.PasswordHash = hashedPassword;
                     user.Person = newPerson;
 
-                    var cust = new Customer
-                    {
-                        Email = request.Email,
-                        RegistrationDate = DateTime.Now,
-                        Person = newPerson
-                    };
-
-                    await _unitOfWork.CustomerRepository.AddAsync(cust);
                     await _unitOfWork.UserRepository.AddAsync(user);
                     await _unitOfWork.SaveAsync();
 
@@ -148,20 +124,11 @@ namespace Railroad.BLL.Services
                 user.PasswordHash = hashedPassword;
                 user.Person = person;
 
-                var customer = new Customer
-                {
-                    Email = request.Email,
-                    RegistrationDate = DateTime.Now,
-                    Person = person
-                };
-
-                await _unitOfWork.CustomerRepository.AddAsync(customer);
                 await _unitOfWork.UserRepository.AddAsync(user);
                 await _unitOfWork.SaveAsync();
 
                 return user;
             }
-
             if (person is null)
             {
 

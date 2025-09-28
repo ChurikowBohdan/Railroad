@@ -17,7 +17,8 @@ namespace Railroad.DAL.Entities
 
         [MaxLength(170)]
         public string City { get; set; }
-
+        public string Email { get; set; }
         public DateTime BirthDate { get; set; }
+        public ICollection<Ticket>? Tickets { get; set; }
     }
 }

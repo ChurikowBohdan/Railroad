@@ -6,7 +6,7 @@ namespace Railroad.DAL.Entities
     {
         public int TrainRouteId { get; set; }
         public int PriceId { get; set; }
-        public int CustomerId { get; set; }
+        public int PersonId { get; set; }
 
         public int DepartureStationId { get; set; }
         public int DestinationStationId { get; set; }
@@ -30,7 +30,7 @@ namespace Railroad.DAL.Entities
         public TrainRoute TrainRoute { get; set; }
 
         public Price Price { get; set; }
-        public Customer Customer { get; set; }
+        public Person Person { get; set; }
 
     }
 }

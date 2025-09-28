@@ -45,23 +45,15 @@ namespace Railroad.DAL.Data
 
             // ---------- Persons ----------
             modelBuilder.Entity<Person>().HasData(
-                new Person { Id = 1, Name = "Ivan", Surname = "Petrenko", PhoneNumber = "380931234567", Country = "Ukraine", City = "Kyiv", BirthDate = new DateTime(1990, 5, 20) },
-                new Person { Id = 2, Name = "Olena", Surname = "Shevchenko", PhoneNumber = "380671112233", Country = "Ukraine", City = "Lviv", BirthDate = new DateTime(1995, 10, 12) },
-                new Person { Id = 3, Name = "Serhiy", Surname = "Koval", PhoneNumber = "380501234567", Country = "Ukraine", City = "Odesa", BirthDate = new DateTime(1988, 3, 15) },
-                new Person { Id = 4, Name = "Kateryna", Surname = "Bondarenko", PhoneNumber = "380631112233", Country = "Ukraine", City = "Dnipro", BirthDate = new DateTime(1992, 7, 22) },
-                new Person { Id = 5, Name = "Mykola", Surname = "Shevtsov", PhoneNumber = "380671223344", Country = "Ukraine", City = "Kharkiv", BirthDate = new DateTime(1985, 12, 2) },
-                new Person { Id = 6, Name = "Oksana", Surname = "Moroz", PhoneNumber = "380931556677", Country = "Ukraine", City = "Vinnytsia", BirthDate = new DateTime(1998, 1, 30) }
+                new Person { Id = 1, Name = "Ivan", Surname = "Petrenko", Email = "Petrenko1@gmail.com", PhoneNumber = "380931234567", Country = "Ukraine", City = "Kyiv", BirthDate = new DateTime(1990, 5, 20) },
+                new Person { Id = 2, Name = "Olena", Surname = "Shevchenko", Email = "Shevchenko2@gmail.com", PhoneNumber = "380671112233", Country = "Ukraine", City = "Lviv", BirthDate = new DateTime(1995, 10, 12) },
+                new Person { Id = 3, Name = "Serhiy", Surname = "Koval", Email = "Koval3@gmail.com", PhoneNumber = "380501234567", Country = "Ukraine", City = "Odesa", BirthDate = new DateTime(1988, 3, 15) },
+                new Person { Id = 4, Name = "Kateryna", Surname = "Bondarenko", Email = "Bondarenko4@gmail.com", PhoneNumber = "380631112233", Country = "Ukraine", City = "Dnipro", BirthDate = new DateTime(1992, 7, 22) },
+                new Person { Id = 5, Name = "Mykola", Surname = "Shevtsov", Email = "Shevtsov5@gmail.com", PhoneNumber = "380671223344", Country = "Ukraine", City = "Kharkiv", BirthDate = new DateTime(1985, 12, 2) },
+                new Person { Id = 6, Name = "Oksana", Surname = "Moroz", Email = "Moroz6@gmail.com", PhoneNumber = "380931556677", Country = "Ukraine", City = "Vinnytsia", BirthDate = new DateTime(1998, 1, 30) }
             );
 
-            // ---------- Customers ----------
-            modelBuilder.Entity<Customer>().HasData(
-                new Customer { Id = 1, PersonId = 1, DiscountValue = 10, Email = "ivan@mail.com", RegistrationDate = new DateTime(2023, 8, 28) },
-                new Customer { Id = 2, PersonId = 2, DiscountValue = 5, Email = "olena@mail.com", RegistrationDate = new DateTime(2022, 2, 1) },
-                new Customer { Id = 3, PersonId = 3, DiscountValue = 15, Email = "serhiy@mail.com", RegistrationDate = new DateTime(2021, 12, 10) },
-                new Customer { Id = 4, PersonId = 4, DiscountValue = 7, Email = "kateryna@mail.com", RegistrationDate = new DateTime(2022, 5, 5) },
-                new Customer { Id = 5, PersonId = 5, DiscountValue = 12, Email = "mykola@mail.com", RegistrationDate = new DateTime(2023, 1, 20) },
-                new Customer { Id = 6, PersonId = 6, DiscountValue = 3, Email = "oksana@mail.com", RegistrationDate = new DateTime(2023, 3, 15) }
-            );
+
 
             // ---------- TrainRoutes ----------
             modelBuilder.Entity<TrainRoute>().HasData(
@@ -114,14 +106,12 @@ namespace Railroad.DAL.Data
 
             // ---------- Tickets ----------
             modelBuilder.Entity<Ticket>().HasData(
-                new Ticket { Id = 1, TrainRouteId = 1, PriceId = 1, DepartureStationId = 1, DestinationStationId = 2, CustomerId = 1, CarriageWeight = 10, Seat = 12, CarriagePrice = 25m, RoadPrice = 270m, FinalPrice = 295m, PurchaseDate = new DateTime(2024, 9, 12, 5, 2, 3) },
-                new Ticket { Id = 2, TrainRouteId = 2, PriceId = 1, DepartureStationId = 2, DestinationStationId = 3, CustomerId = 2, CarriageWeight = 15, Seat = 8, CarriagePrice = 37.5m, RoadPrice = 270m, FinalPrice = 307.5m, PurchaseDate = new DateTime(2025, 8, 28, 9, 1, 1) },
-                new Ticket { Id = 3, TrainRouteId = 1, PriceId = 1, DepartureStationId = 8, DestinationStationId = 1, CustomerId = 3, CarriageWeight = 12, Seat = 9, CarriagePrice = 30m, RoadPrice = 270m, FinalPrice = 300m, PurchaseDate = new DateTime(2024, 7, 28, 8, 11, 12) }
+                new Ticket { Id = 1, TrainRouteId = 1, PriceId = 1, DepartureStationId = 1, DestinationStationId = 2, PersonId = 1, CarriageWeight = 10, Seat = 12, CarriagePrice = 25m, RoadPrice = 270m, FinalPrice = 295m, PurchaseDate = new DateTime(2024, 9, 12, 5, 2, 3) },
+                new Ticket { Id = 2, TrainRouteId = 2, PriceId = 1, DepartureStationId = 2, DestinationStationId = 3, PersonId = 2, CarriageWeight = 15, Seat = 8, CarriagePrice = 37.5m, RoadPrice = 270m, FinalPrice = 307.5m, PurchaseDate = new DateTime(2025, 8, 28, 9, 1, 1) },
+                new Ticket { Id = 3, TrainRouteId = 1, PriceId = 1, DepartureStationId = 8, DestinationStationId = 1, PersonId = 3, CarriageWeight = 12, Seat = 9, CarriagePrice = 30m, RoadPrice = 270m, FinalPrice = 300m, PurchaseDate = new DateTime(2024, 7, 28, 8, 11, 12) }
             );
         }
 
-        public DbSet<Admin> Admins { get; set; }
-        public DbSet<Customer> Customers { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<RoutePoint> RoutePoints { get; set; }
