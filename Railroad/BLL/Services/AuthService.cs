@@ -21,7 +21,7 @@ namespace Railroad.BLL.Services
             _unitOfWork = unitOfWork;
             _configuration = configuration;
         }
-        public async Task<TokenResponseDTO?> LoginAsync(UserDTO request)
+        public async Task<TokenResponseDTO?> LoginAsync(LoginDTO request)
         {
             var allUsers = await _unitOfWork.UserRepository.GetAllAsync();
             var user = allUsers.FirstOrDefault(u => u.Username == request.Username);
@@ -55,20 +55,136 @@ namespace Railroad.BLL.Services
                 return null;
             }
 
+            var persons = await _unitOfWork.PersonRepository.GetAllAsync();
+            var person = persons.FirstOrDefault(x => x.PhoneNumber == request.PhoneNumber);
+
             var user = new User();
             var hashedPassword = new PasswordHasher<User>()
                 .HashPassword(user, request.Password);
+
+            if (request.Role == "Admin")
+            {
+                if (person is null)
+                {
+                    var newPerson = new Person
+                    {
+                        Name = request.Name,
+                        Surname = request.Surname,
+                        PhoneNumber = request.PhoneNumber,
+                        Country = request.Country,
+                        City = request.City,
+                        BirthDate = request.BirthDate
+                    };
+
+                    user.Username = request.Username;
+                    user.PasswordHash = hashedPassword;
+                    user.Role = request.Role;
+                    user.Person = newPerson;
+
+                    var administrator = new Admin
+                    {
+                        Email = request.Email,
+                        RegistrationDate = DateTime.Now,
+                        Person = newPerson
+                    };
+
+                    await _unitOfWork.AdminRepository.AddAsync(administrator);
+                    await _unitOfWork.UserRepository.AddAsync(user);
+                    await _unitOfWork.SaveAsync();
+
+                    return user;
+                }
+
+                user.Username = request.Username;
+                user.PasswordHash = hashedPassword;
+                user.Person = person;
+
+                var admin = new Admin
+                {
+                    Email = request.Email,
+                    RegistrationDate = DateTime.Now,
+                    Person = person
+                };
+
+                await _unitOfWork.AdminRepository.AddAsync(admin);
+                await _unitOfWork.UserRepository.AddAsync(user);
+                await _unitOfWork.SaveAsync();
+
+                return user;
+            }
+            if (request.Role == "Customer")
+            {
+                if (person is null)
+                {
+                    var newPerson = new Person
+                    {
+                        Name = request.Name,
+                        Surname = request.Surname,
+                        PhoneNumber = request.PhoneNumber,
+                        Country = request.Country,
+                        City = request.City,
+                        BirthDate = request.BirthDate
+                    };
+
+                    user.Username = request.Username;
+                    user.PasswordHash = hashedPassword;
+                    user.Person = newPerson;
+
+                    var cust = new Customer
+                    {
+                        Email = request.Email,
+                        RegistrationDate = DateTime.Now,
+                        Person = newPerson
+                    };
+
+                    await _unitOfWork.CustomerRepository.AddAsync(cust);
+                    await _unitOfWork.UserRepository.AddAsync(user);
+                    await _unitOfWork.SaveAsync();
+
+                    return user;
+                }
+
+                user.Username = request.Username;
+                user.PasswordHash = hashedPassword;
+                user.Person = person;
+
+                var customer = new Customer
+                {
+                    Email = request.Email,
+                    RegistrationDate = DateTime.Now,
+                    Person = person
+                };
+
+                await _unitOfWork.CustomerRepository.AddAsync(customer);
+                await _unitOfWork.UserRepository.AddAsync(user);
+                await _unitOfWork.SaveAsync();
+
+                return user;
+            }
+
+            if (person is null)
+            {
+
+                user.Username = request.Username;
+                user.PasswordHash = hashedPassword;
+                user.Person = new Person
+                {
+                    Name = request.Name,
+                    Surname = request.Surname,
+                    PhoneNumber = request.PhoneNumber,
+                    Country = request.Country,
+                    City = request.City,
+                    BirthDate = request.BirthDate
+                };
+                await _unitOfWork.UserRepository.AddAsync(user);
+                await _unitOfWork.SaveAsync();
+
+                return user;
+            }
+
             user.Username = request.Username;
             user.PasswordHash = hashedPassword;
-            user.Person = new Person
-            {
-                Name = request.Name,
-                Surname = request.Surname,
-                PhoneNumber = request.PhoneNumber,
-                Country = request.Country,
-                City = request.City,
-                BirthDate = request.BirthDate
-            };
+            user.Person = person;
             await _unitOfWork.UserRepository.AddAsync(user);
             await _unitOfWork.SaveAsync();
 

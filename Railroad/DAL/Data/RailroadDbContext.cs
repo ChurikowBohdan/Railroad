@@ -23,15 +23,15 @@ namespace Railroad.DAL.Data
 
             // ---------- Stations ----------
             modelBuilder.Entity<Station>().HasData(
-                new Station { Id = 1, Name = "Central Station", CityName = "Kyiv", DistrictName = "Podil", NuberOfPlatforms = 5 },
-                new Station { Id = 2, Name = "South Station", CityName = "Lviv", DistrictName = "Halych", NuberOfPlatforms = 3 },
-                new Station { Id = 3, Name = "North Station", CityName = "Odesa", DistrictName = "Primorsky", NuberOfPlatforms = 4 },
-                new Station { Id = 4, Name = "East Station", CityName = "Dnipro", DistrictName = "Novokodatsky", NuberOfPlatforms = 2 },
-                new Station { Id = 5, Name = "West Station", CityName = "Kharkiv", DistrictName = "Kholodnohirsk", NuberOfPlatforms = 3 },
-                new Station { Id = 6, Name = "Central Vinnytsia", CityName = "Vinnytsia", DistrictName = "Center", NuberOfPlatforms = 2 },
-                new Station { Id = 7, Name = "Cherkasy Station", CityName = "Cherkasy", DistrictName = "Center", NuberOfPlatforms = 2 },
-                new Station { Id = 8, Name = "Zhytomyr Station", CityName = "Zhytomyr", DistrictName = "Center", NuberOfPlatforms = 2 },
-                new Station { Id = 9, Name = "Poltava Station", CityName = "Poltava", DistrictName = "Center", NuberOfPlatforms = 2 }
+                new Station { Id = 1, Name = "Central Station", CityName = "Kyiv", DistrictName = "Podil", NumberOfPlatforms = 5 },
+                new Station { Id = 2, Name = "South Station", CityName = "Lviv", DistrictName = "Halych", NumberOfPlatforms = 3 },
+                new Station { Id = 3, Name = "North Station", CityName = "Odesa", DistrictName = "Primorsky", NumberOfPlatforms = 4 },
+                new Station { Id = 4, Name = "East Station", CityName = "Dnipro", DistrictName = "Novokodatsky", NumberOfPlatforms = 2 },
+                new Station { Id = 5, Name = "West Station", CityName = "Kharkiv", DistrictName = "Kholodnohirsk", NumberOfPlatforms = 3 },
+                new Station { Id = 6, Name = "Central Vinnytsia", CityName = "Vinnytsia", DistrictName = "Center", NumberOfPlatforms = 2 },
+                new Station { Id = 7, Name = "Cherkasy Station", CityName = "Cherkasy", DistrictName = "Center", NumberOfPlatforms = 2 },
+                new Station { Id = 8, Name = "Zhytomyr Station", CityName = "Zhytomyr", DistrictName = "Center", NumberOfPlatforms = 2 },
+                new Station { Id = 9, Name = "Poltava Station", CityName = "Poltava", DistrictName = "Center", NumberOfPlatforms = 2 }
             );
 
             // ---------- Trains ----------

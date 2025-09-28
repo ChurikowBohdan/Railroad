@@ -14,6 +14,6 @@ namespace Railroad.DAL.Entities
         public string DistrictName { get; set;}
 
         [Range(0, 100)]
-        public int NuberOfPlatforms { get; set; }
+        public int NumberOfPlatforms { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace Railroad.BLL.Services
                 Name = stationDTO.Name,
                 CityName = stationDTO.StationCityName,
                 DistrictName = stationDTO.StationDistrictName,
-                NuberOfPlatforms = stationDTO.NuberOfPlatforms
+                NumberOfPlatforms = stationDTO.NumberOfPlatforms
             };
 
             await _unitOfWork.StationRepository.AddAsync(entity);
@@ -59,7 +59,7 @@ namespace Railroad.BLL.Services
             station.Name = stationWriteDTO.Name;
             station.CityName = stationWriteDTO.StationCityName;
             station.DistrictName = stationWriteDTO.StationDistrictName;
-            station.NuberOfPlatforms = stationWriteDTO.NuberOfPlatforms;
+            station.NumberOfPlatforms = stationWriteDTO.NumberOfPlatforms;
 
             await _unitOfWork.SaveAsync();
         }
@@ -70,7 +70,7 @@ namespace Railroad.BLL.Services
             Name = station.Name,
             StationCityName = station.CityName,
             StationDistrictName = station.DistrictName,
-            NuberOfPlatforms = station.NuberOfPlatforms
+            NumberOfPlatforms = station.NumberOfPlatforms
         };
     }
 }

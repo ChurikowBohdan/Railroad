@@ -7,7 +7,6 @@
         public string PhoneNumber { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
-
         public DateTime BirthDate { get; set; }
         public int DiscountValue { get; init; }
         public string Email { get; init; }

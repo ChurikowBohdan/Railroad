@@ -32,7 +32,7 @@ namespace Railroad.PL.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<TokenResponseDTO>> Login(UserDTO request)
+        public async Task<ActionResult<TokenResponseDTO>> Login(LoginDTO request)
         {
             var result = await authService.LoginAsync(request);
             if (result is null)

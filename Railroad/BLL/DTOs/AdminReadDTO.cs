@@ -3,7 +3,6 @@
     public class AdminReadDTO
     {
         public int AdminId { get; set; }
-        public string Position { get; set; }
         public string Name { get; init; }
         public string Surname { get; init; }
         public string PhoneNumber { get; init; }

@@ -8,7 +8,7 @@ namespace Railroad.DAL.Entities
         public string PasswordHash { get; set; }
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiryTime { get; set; }
-        public string Role { get; set; } = string.Empty;
+        public string Role { get; set; }
         public int PersonId { get; set; }
         public Person Person { get; set; }
     }

@@ -21,8 +21,7 @@ namespace Railroad.BLL.Services
             if (person is not null)
             {
                 var admin = new Admin
-                {
-                    Position = adminWriteDTO.Position,
+                {   DiscountValue = adminWriteDTO.DiscountValue,
                     Person = person
                 };
                 await _unitOfWork.AdminRepository.AddAsync(admin);
@@ -32,7 +31,6 @@ namespace Railroad.BLL.Services
             {
                 var admin = new Admin
                 {
-                    Position= adminWriteDTO.Position,
                     DiscountValue = adminWriteDTO.DiscountValue,
                     Email = adminWriteDTO.Email,
                     RegistrationDate = DateTime.Now,
@@ -80,7 +78,6 @@ namespace Railroad.BLL.Services
         {
             var admin = await _unitOfWork.AdminRepository.GetByIdWithDetailsAsync(id);
 
-            admin.Position = adminWriteDTO.Position;
             admin.DiscountValue = adminWriteDTO.DiscountValue;
             admin.Email = adminWriteDTO.Email;
 
