@@ -23,8 +23,7 @@ namespace Railroad.BLL.Services
         }
         public async Task<TokenResponseDTO?> LoginAsync(LoginDTO request)
         {
-            var allUsers = await _unitOfWork.UserRepository.GetAllAsync();
-            var user = allUsers.FirstOrDefault(u => u.Username == request.Username);
+            var user = await _unitOfWork.UserRepository.GetByUsernameAsync(request.Username);
             if (user is null)
             {
                 return null;

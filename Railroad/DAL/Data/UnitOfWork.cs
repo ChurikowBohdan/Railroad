@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Railroad.DAL.Entities;
 using Railroad.DAL.Interfaces;
 using Railroad.DAL.Repositories;
@@ -28,7 +29,6 @@ namespace Railroad.DAL.Data
         {
             await _context.SaveChangesAsync();
         }
-
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed && disposing)

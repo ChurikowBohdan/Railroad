@@ -9,7 +9,7 @@ namespace Railroad.DAL.Entities
 
         [MaxLength(100)]
         public string Surname { get; set; }
-
+        [MaxLength(30)]
         public string PhoneNumber { get; set; }
 
         [MaxLength(60)]
@@ -17,6 +17,7 @@ namespace Railroad.DAL.Entities
 
         [MaxLength(170)]
         public string City { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
         public ICollection<Ticket>? Tickets { get; set; }

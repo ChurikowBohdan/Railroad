@@ -63,7 +63,9 @@ namespace Railroad.BLL.Services
         {
             TrainId = train.Id,
             Name = train.Name,
-            NumberOfSeats = train.NumberOfSeats
+            NumberOfSeats = train.NumberOfSeats,
+            Created = train.CreatedAt,
+            Updated = train.UpdatedAt
         };
     }
 }

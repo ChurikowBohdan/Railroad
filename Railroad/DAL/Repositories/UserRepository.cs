@@ -22,5 +22,10 @@ namespace Railroad.DAL.Repositories
             return await _dbSet.Include(x => x.Person)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        public async Task<User?> GetByUsernameAsync(string username)
+        {
+            return await _dbSet.FirstOrDefaultAsync(x => x.Username == username);
+        }
     }
 }
